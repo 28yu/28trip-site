@@ -43,10 +43,11 @@ It will grow into a hub hosting multiple trip pages. The rules below are **manda
 
 - このリポジトリは **GitHub で公開（public）** されている（GitHub Pages で無料公開するため）。
   → **コミットする内容はすべて全世界に見える**前提で扱う。
-- **個人情報は絶対に載せない / コミットしない**:
-  - ❌ 自宅など**個人の住所（番地）**・**個人の電話/携帯**・**家族の実名**・**子どもの名前**。
-  - ✅ 家族は**イニシャル**で表す（例: `N` / `M` / `F` / `T`）。
-  - ✅ **店舗など既に公開されている情報**（店名・店の住所・店の固定/携帯電話）は掲載可。
+- **これらは絶対に載せない / コミットしない**:
+  - ❌ 個人の**住所（番地）**・**個人の電話/携帯**・**名字（フルネーム）**・**子どもの名前**。
+- **これらはオーナー判断で掲載可**:
+  - ✅ 大人の**下の名前・ニックネーム**（例: `なおき` / `まーさ` / `ゆうま` / `かおり`）。
+  - ✅ **店舗など既に公開されている情報**（店名・店の住所・店の固定/携帯電話）。
 - 検索避けとして**各ページに必ず**入れる:
   ```html
   <meta name="robots" content="noindex, nofollow">
@@ -72,10 +73,10 @@ It will grow into a hub hosting multiple trip pages. The rules below are **manda
 ## 沖縄 2026（お盆）の固定情報 / Okinawa 2026 fixed facts
 
 - **日程**: 8/7(金)–8/16(日)、10日間。往路 JAL923 HND→OKA、復路 JAL906 OKA→HND。
-- **N は 8/12–16 は静岡**にいる（同行なし）。該当日に**視覚的に分かるバッジ**を表示する（`.away`）。
-  N is in Shizuoka on 8/12–16 — show a clear badge on those days.
-- **「仕事」= 妹の勤務**で同行なし。**メモとして表示**する。
-  "Work" = sister's shift, not joining. Show as a note.
+- **なおき は 8/12–16 は静岡**にいる（同行なし）。該当日に**視覚的に分かるバッジ**を表示する（`.away`）。
+  Naoki is in Shizuoka on 8/12–16 — show a clear badge on those days.
+- **「仕事」= まーさ（妹）の勤務**で同行なし。**メモとして表示**する。
+  "Work" = Maasa's shift, not joining. Show as a note.
 - **定休注意 / Closures**:
   - **AONOKI = 火〜木 定休** → 8/13(木) は**赤字で注意喚起**。
   - **Oki Smash = 月〜木 定休** → 8/10(月) は**赤字で注意喚起**。
