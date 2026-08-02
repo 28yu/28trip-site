@@ -170,7 +170,7 @@ a{color:inherit;text-decoration:none}
   }
   function layout(st,vx0,LM,vy0,vbH){
     var rx=vx0+LM-12,order=st.map(function(_,i){return i}).sort(function(a,b){return st[a][1]-st[b][1]});
-    var gap=vbH*0.12,ly=[],cur=-1e9;
+    var gap=vbH*0.135,ly=[],cur=-1e9;
     order.forEach(function(i){var y=Math.max(st[i][1],cur+gap);ly[i]=y;cur=y;});
     var top=vy0+vbH*0.09,bot=vy0+vbH*0.91;
     if(cur>bot){var d=cur-bot;order.forEach(function(i){ly[i]-=d;});}
@@ -193,7 +193,7 @@ a{color:inherit;text-decoration:none}
   function showFull(){ if(annoT)clearTimeout(annoT); fp.innerHTML=''; fr.setAttribute('points',''); tween([curVB?curVB.slice():FULL.slice(),FULL],[560]); }
   function showDay(id,viaFull){
     var st=DM[id].stops,f=fit(st),L=layout(st,f.vb[0],f.LM,f.vb[1],f.vb[3]);
-    var focus=f.focus,r=focus*0.03,fs=focus*0.038,sw=focus*0.009,hw=(fs*0.22).toFixed(1);
+    var focus=f.focus,r=focus*0.03,fs=focus*0.047,sw=focus*0.009,hw=(fs*0.22).toFixed(1);
     fr.setAttribute('points',st.map(function(s){return s[0]+','+s[1];}).join(' '));
     var dots='',anno='';
     st.forEach(function(s,i){ anno+='<line class="fm-leader" x1="'+s[0]+'" y1="'+s[1]+'" x2="'+L.rx+'" y2="'+L.ly[i].toFixed(1)+'"/>'; });
