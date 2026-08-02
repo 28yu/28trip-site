@@ -175,7 +175,7 @@ a{color:inherit;text-decoration:none}
   var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
   var last=-1,lastF='\x00';
   function update(){
-    var top=(nav?nav.getBoundingClientRect().bottom:0)+10,idx=0;
+    var top=window.innerHeight*0.42,idx=0;
     for(var i=0;i<secs.length;i++){ if(secs[i]&&secs[i].getBoundingClientRect().top<=top) idx=i; }
     if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4) idx=secs.length-1;
     var started=secs[0]&&secs[0].getBoundingClientRect().top<window.innerHeight*0.5;
