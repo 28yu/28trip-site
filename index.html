@@ -157,30 +157,31 @@ a{color:inherit;text-decoration:none}
 <div id="floatmap" aria-hidden="true"><svg id="fmsvg" viewBox="-380.0 -20.0 1400.0 1335.0" preserveAspectRatio="xMidYMid meet"><use href="#okiland" class="okifill"/><use href="#okimuni" class="okimuni" clip-path="url(#landclip)"/><use href="#okiland" class="okicoast"/><polyline id="fmroute" class="daymap-route" points=""/><g id="fmpins"></g></svg></div>
 <script>
 (function(){
-  var DM={"d87":{"stops":[[15.4,1097.7,0,"空港"],[164.5,990.9,1,"まーさ家"]]},"d88":{"stops":[[164.5,990.9,1,"まーさ家"],[73.3,1139.7,0,"レンタカー"],[139.9,1044.3,0,"首里"],[97.9,1086.3,0,"maru CAFE"]]},"d89":{"stops":[[164.5,990.9,1,"まーさ家"],[121.1,1016.8,0,"八米"]]},"d810":{"stops":[[164.5,990.9,1,"まーさ家"],[199.3,698.2,0,"Oki Smash"]]},"d812":{"stops":[[164.5,990.9,1,"まーさ家"],[141.4,774.2,0,"一翠窯"],[155.9,771.0,0,"図書館"]]},"d813":{"stops":[[164.5,990.9,1,"まーさ家"],[331.1,805.0,0,"メモリアル"],[232.6,709.6,0,"Sailfish"],[303.6,832.5,0,"AONOKI"]]},"d816":{"stops":[[164.5,990.9,1,"まーさ家"],[73.3,1139.7,0,"レンタカー"],[15.4,1097.7,0,"空港"]]}}, FULL=[-570.2, -65.3, 2140.2, 1426.8];
+  var DM={"d87":{"stops":[[15.4,1097.7,0,"空港"],[164.5,990.9,1,"まーさ家"]]},"d88":{"stops":[[164.5,990.9,1,"まーさ家"],[73.3,1139.7,0,"レンタカー"],[139.9,1044.3,0,"首里"],[97.9,1086.3,0,"maru CAFE"]]},"d89":{"stops":[[164.5,990.9,1,"まーさ家"],[121.1,1016.8,0,"八米"]]},"d810":{"stops":[[164.5,990.9,1,"まーさ家"],[199.3,698.2,0,"Oki Smash"]]},"d812":{"stops":[[164.5,990.9,1,"まーさ家"],[141.4,774.2,0,"一翠窯"],[155.9,771.0,0,"図書館"]]},"d813":{"stops":[[164.5,990.9,1,"まーさ家"],[331.1,805.0,0,"メモリアル"],[232.6,709.6,0,"Sailfish"],[303.6,832.5,0,"AONOKI"]]},"d816":{"stops":[[164.5,990.9,1,"まーさ家"],[73.3,1139.7,0,"レンタカー"],[15.4,1097.7,0,"空港"]]}}, FULL=[-570.2, -65.3, 2140.2, 1426.8], EASTX={"y0":0.0,"dy":9.25,"v":[910.6,911.2,915.6,931.8,943.8,969.4,969.9,967.7,973.3,984.4,990.0,986.8,860.4,991.9,988.7,992.0,997.0,997.2,997.2,993.6,999.1,1000.0,995.6,989.3,988.3,973.8,965.4,958.1,958.0,947.7,951.6,943.6,680.5,930.2,930.9,923.5,909.5,907.3,903.7,651.2,890.8,881.5,872.4,850.4,850.4,746.2,749.1,749.4,745.6,716.7,723.1,502.5,500.1,744.9,726.1,588.3,727.0,672.1,673.5,664.1,423.7,600.2,603.3,573.3,536.1,517.1,526.4,526.4,529.7,513.5,497.1,476.7,448.9,454.1,406.4,451.0,452.6,300.0,299.4,278.7,286.8,113.3,306.8,322.4,322.4,342.4,349.7,344.7,345.3,342.4,343.7,155.0,356.5,361.7,371.5,408.4,399.3,408.3,409.2,387.3,413.7,412.5,261.9,262.9,261.9,255.2,237.5,87.6,226.8,223.5,220.2,61.7,221.0,220.2,209.4,202.2,194.0,197.2,194.2,271.2,271.0,278.4,282.6,282.3,26.3,265.5,47.4,242.8,236.4,229.7,190.9,181.6,167.9,151.5,151.5,141.9,133.3,113.0,76.8,65.5]};
   var fm=document.getElementById('floatmap'),fsvg=document.getElementById('fmsvg'),
       fr=document.getElementById('fmroute'),fp=document.getElementById('fmpins');
   var AR=1.5,MINSPAN=360,curVB=null,animId=null,annoT=null,mode=null;
+  function eastX(y){var i=Math.round((y-EASTX.y0)/EASTX.dy);if(i<0)i=0;if(i>=EASTX.v.length)i=EASTX.v.length-1;return EASTX.v[i];}
   function place(st){
     var xs=st.map(function(s){return s[0]}),ys=st.map(function(s){return s[1]});
     var minx=Math.min.apply(0,xs),maxx=Math.max.apply(0,xs),miny=Math.min.apply(0,ys),maxy=Math.max.apply(0,ys);
     var cx=(minx+maxx)/2,cy=(miny+maxy)/2;
     var focus=Math.max(maxx-minx,maxy-miny,MINSPAN)*1.35;
-    var fs=focus*0.047,dotR=focus*0.03,gap=focus*0.03,sw=focus*0.009;
+    var fs=focus*0.047,dotR=focus*0.015,gap=focus*0.028,sw=focus*0.0045;
     function tw(s){var w=0;for(var i=0;i<s.length;i++){w+=(s.charCodeAt(i)<256?fs*0.56:fs*1.02);}return w;}
     var order=st.map(function(_,i){return i}).sort(function(a,b){return ys[a]-ys[b]});
     var minGap=fs*1.5,ly=[],cur=-1e9;
     order.forEach(function(i){var y=Math.max(ys[i],cur+minGap);ly[i]=y;cur=y;});
-    var lo=Math.min.apply(0,ly),hi=Math.max.apply(0,ly),sh=cy-(lo+hi)/2;
-    ly=ly.map(function(v){return v+sh;});
-    var lx=xs.map(function(x){return x+dotR+gap;});
-    var lr=Math.max.apply(0,st.map(function(s,i){return lx[i]+tw(s[3])}));
-    var cl=minx-dotR-focus*0.06, cr=lr+focus*0.05;
+    var lo=Math.min.apply(0,ly),hi=Math.max.apply(0,ly),sh=cy-(lo+hi)/2; ly=ly.map(function(v){return v+sh;});
+    // ラベルx：ピンのすぐ右、ただし島の東岸より外（海側）に出す
+    var colX=Math.max(maxx+dotR+gap, Math.max.apply(0,ly.map(function(y){return eastX(y);}))+focus*0.05);
+    var lr=colX+Math.max.apply(0,st.map(function(s){return tw(s[3])}));
+    var cl=minx-dotR-focus*0.05, cr=lr+focus*0.05;
     var ct=Math.min(miny-dotR,Math.min.apply(0,ly)-fs*0.8)-focus*0.04;
     var cb=Math.max(maxy+dotR,Math.max.apply(0,ly)+fs*0.8)+focus*0.04;
     var cw=cr-cl,ch=cb-ct,ccx=(cl+cr)/2,ccy=(ct+cb)/2,vw,vh;
     if(cw/ch<AR){vh=ch;vw=ch*AR;}else{vw=cw;vh=cw/AR;}
-    return {vb:[ccx-vw/2,ccy-vh/2,vw,vh],lx:lx,ly:ly,fs:fs,dotR:dotR,sw:sw};
+    return {vb:[ccx-vw/2,ccy-vh/2,vw,vh],colX:colX,ly:ly,fs:fs,dotR:dotR,sw:sw};
   }
   function tween(frames,durs){
     if(animId)cancelAnimationFrame(animId);
@@ -200,11 +201,11 @@ a{color:inherit;text-decoration:none}
     var st=DM[id].stops,p=place(st),fs=p.fs,dotR=p.dotR,sw=p.sw,hw=(fs*0.22).toFixed(1);
     fr.setAttribute('points',st.map(function(s){return s[0]+','+s[1];}).join(' '));
     var dots='',anno='';
-    st.forEach(function(s,i){ anno+='<line class="fm-leader" x1="'+s[0]+'" y1="'+s[1]+'" x2="'+p.lx[i].toFixed(1)+'" y2="'+p.ly[i].toFixed(1)+'"/>'; });
+    st.forEach(function(s,i){ anno+='<line class="fm-leader" x1="'+s[0]+'" y1="'+s[1]+'" x2="'+p.colX.toFixed(1)+'" y2="'+p.ly[i].toFixed(1)+'"/>'; });
     st.forEach(function(s,i){
       var c=s[2]?'#0d8a9e':'#ee6a4c';
       dots+='<circle cx="'+s[0]+'" cy="'+s[1]+'" r="'+dotR.toFixed(1)+'" fill="'+c+'" stroke="#fff" stroke-width="'+sw.toFixed(1)+'"/>';
-      anno+='<text class="fm-lbl" x="'+(p.lx[i]+fs*0.35).toFixed(1)+'" y="'+(p.ly[i]+fs*0.34).toFixed(1)+'" text-anchor="start" style="font-size:'+fs.toFixed(0)+'px;stroke-width:'+hw+'">'+s[3]+'</text>';
+      anno+='<text class="fm-lbl" x="'+(p.colX+fs*0.35).toFixed(1)+'" y="'+(p.ly[i]+fs*0.34).toFixed(1)+'" text-anchor="start" style="font-size:'+fs.toFixed(0)+'px;stroke-width:'+hw+'">'+s[3]+'</text>';
     });
     fp.innerHTML=dots+'<g id="fmanno" style="opacity:0;transition:opacity .3s">'+anno+'</g>';
     var start=curVB?curVB.slice():p.vb.slice(),dur;
