@@ -72,7 +72,7 @@ It will grow into a hub hosting multiple trip pages. The rules below are **manda
 
 ## 沖縄 2026（お盆）の固定情報 / Okinawa 2026 fixed facts
 
-- **日程**: 8/7(金)–8/16(日)、10日間。往路 JAL923 HND→OKA、復路 JAL906 OKA→HND。
+- **日程**: 8/6(木)–8/16(日)、11日間。往路 **JAL925 HND→OKA 20:05→22:30**（台風の影響で8/7から1日前倒し）、復路 JAL906 OKA→HND 11:40→14:15。
 - **なおき は 8/12–16 は静岡**にいる（同行なし）。該当日に**視覚的に分かるバッジ**を表示する（`.away`）。
   Naoki is in Shizuoka on 8/12–16 — show a clear badge on those days.
 - **「仕事」= まーさ（妹）の勤務**で同行なし。**メモとして表示**する。
